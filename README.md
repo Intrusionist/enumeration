@@ -21,4 +21,5 @@ Enter IP : "Ip to Be Scanned"
 
 ## Special Thanks
 
+#### Karthik Subramanianx
 #### Lenora Agnel
