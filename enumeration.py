@@ -2,9 +2,9 @@ import subprocess
 import shlex
 import xml.etree.ElementTree as ET
 import logging
+import sys
 
 niktoportlist = []
-
 
 def nmapexec():
 
@@ -68,8 +68,13 @@ def enumexec():
     except Exception as e:
         print("Error >> ".format(e))
 
+def main():
+    global ipaddr
+    ipaddr =str(sys.argv[1])
+    print('Scanning '+ ipaddr)
+    nmapexec()
+    enumexec()
+    niktoexec()
 
-ipaddr = input('Enter IP : ')
-nmapexec()
-niktoexec()
-enumexec()
+if __name__ == '__main__':
+	main()
