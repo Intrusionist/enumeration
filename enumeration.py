@@ -1,6 +1,7 @@
 import subprocess
 import shlex
 import xml.etree.ElementTree as ET
+import logging
 
 niktoportlist = []
 
@@ -44,14 +45,14 @@ def niktoexec():
             print(cmd)
 
             try:
-                rout = subprocess.Popen(shlex.split(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE).communicate(
-                    input='n')[0]
+                rout = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE).communicate()[0]
                 rout = rout.decode()
                 print(rout)
                 nikto.write(rout)
 
             except Exception as e:
                 print("Error >> ".format(e))
+                logging.critical(e, exc_info=True)
 
 
 def enumexec():
@@ -68,7 +69,7 @@ def enumexec():
         print("Error >> ".format(e))
 
 
-ipaddr = str(raw_input("Enter IP : "))
+ipaddr = input('Enter IP : ')
 nmapexec()
 niktoexec()
 enumexec()
